@@ -5443,7 +5443,7 @@ var app = new Vue({
     TRC20: 'TT1xLPmnAjtqHvH2zYEwmXF7kBn7hHUr7j',
     rech: search,
     loading: true,
-    sort: 'R',
+    sort: 'C',
     interv: [],
     NbLigne: 15,
     dataSymn: [],
