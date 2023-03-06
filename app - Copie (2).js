@@ -5573,41 +5573,55 @@ var app = new Vue({
     },
     SetFile: function SetFile() {
       var _this2 = this;
-      var setdt = true;
-      var dt = {
-        bitmart: this.bitmart,
-        binance: this.binance,
-        kucoin: this.kucoin,
-        lbank: this.lbank,
-        bybit: this.bybit,
-        poloniex: this.poloniex,
-        okx: this.okx,
-        mexc: this.mexc,
-        data: this.dataSymn
-      };
-      // for(var i = 0;i < Object.keys(dt).length;i++){
-      //     console.log(dt[Object.keys(dt)[i]]);
-      // }
-      Object.keys(dt).forEach(function (elm) {
-        if (Object.keys(dt[elm]).length == 0) {
-          // console.log(Object.keys(dt[elm]).length);
-          setdt = false;
-        }
-      });
-      if (setdt && this.rech == '') {
-        axios__WEBPACK_IMPORTED_MODULE_2___default().post('/SetFiles', {
-          datas: dt
-        })
-        // .then(data => {
-        //     console.log(data.data)
-        // })
-        ["catch"](function (erreur) {
-          console.log('erreur');
-        });
-      }
-      setTimeout(function () {
-        _this2.$emit('set');
-      }, 10000);
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var setdt, dt;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              setdt = true;
+              dt = {
+                bitmart: _this2.bitmart,
+                binance: _this2.binance,
+                kucoin: _this2.kucoin,
+                lbank: _this2.lbank,
+                bybit: _this2.bybit,
+                poloniex: _this2.poloniex,
+                okx: _this2.okx,
+                mexc: _this2.mexc,
+                data: _this2.dataSymn
+              }; // for(var i = 0;i < Object.keys(dt).length;i++){
+              //     console.log(dt[Object.keys(dt)[i]]);
+              // }
+              Object.keys(dt).forEach(function (elm) {
+                if (Object.keys(dt[elm]).length == 0) {
+                  // console.log(Object.keys(dt[elm]).length);
+                  setdt = false;
+                }
+              });
+              if (!(setdt && _this2.rech == '')) {
+                _context2.next = 6;
+                break;
+              }
+              _context2.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/SetFiles', {
+                datas: dt
+              })
+              // .then(data => {
+              //     console.log(data.data)
+              // })
+              ["catch"](function (erreur) {
+                console.log('erreur');
+              });
+            case 6:
+              setTimeout(function () {
+                _this2.SetFile();
+              }, 10000);
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }))();
     },
     changePlat: function changePlat(In, Out) {
       var _this3 = this;
@@ -6085,14 +6099,14 @@ var app = new Vue({
     },
     listCoinGecko: function listCoinGecko() {
       var _this16 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         var data, symb, i;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
             case 0:
               data = [];
               symb = {};
-              _context2.next = 4;
+              _context3.next = 4;
               return fetch('https://api.coingecko.com/api/v3/coins/list').then(function (response) {
                 return response.json();
               }).then(function (dt) {
@@ -6120,37 +6134,37 @@ var app = new Vue({
               }
             case 5:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     setCoinGecko: function setCoinGecko() {
       var _this17 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
         var data, s, symb, sm, j, i, arr, dt;
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) switch (_context3.prev = _context3.next) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
             case 0:
               data = [];
               s = '';
-              _context3.next = 4;
+              _context4.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().get('/getListCoinGecko');
             case 4:
-              symb = _context3.sent.data.datas;
+              symb = _context4.sent.data.datas;
               sm = Object.keys(symb); // console.log(symb);
-              _context3.prev = 6;
+              _context4.prev = 6;
               j = 0;
             case 8:
               if (!(j < sm.length)) {
-                _context3.next = 16;
+                _context4.next = 16;
                 break;
               }
               s = '';
               for (i = j; i < j + 250; i++) {
                 s = s + sm[i] + '%2C';
               }
-              _context3.next = 13;
+              _context4.next = 13;
               return fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=' + s + '&order=market_cap_desc&per_page=250&page=1&sparkline=false&price_change_percentage=24h').then(function (response) {
                 return response.json();
               }).then(function (dt) {
@@ -6161,14 +6175,14 @@ var app = new Vue({
               });
             case 13:
               j = j + 251;
-              _context3.next = 8;
+              _context4.next = 8;
               break;
             case 16:
-              _context3.next = 21;
+              _context4.next = 21;
               break;
             case 18:
-              _context3.prev = 18;
-              _context3.t0 = _context3["catch"](6);
+              _context4.prev = 18;
+              _context4.t0 = _context4["catch"](6);
               data = [];
             case 21:
               // console.log(data);
@@ -6207,29 +6221,29 @@ var app = new Vue({
               }
             case 22:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
-        }, _callee3, null, [[6, 18]]);
+        }, _callee4, null, [[6, 18]]);
       }))();
     },
     getCoinGecko: function getCoinGecko() {
       var _this18 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
         var symb;
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-          while (1) switch (_context4.prev = _context4.next) {
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
             case 0:
-              _context4.next = 2;
+              _context5.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().get('/getCoinGecko');
             case 2:
-              symb = _context4.sent.data.datas;
+              symb = _context5.sent.data.datas;
               // console.log(symb);
               _this18.coinGecko = symb;
             case 4:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
-        }, _callee4);
+        }, _callee5);
       }))();
     },
     numberWithSpaces: function numberWithSpaces(x) {
