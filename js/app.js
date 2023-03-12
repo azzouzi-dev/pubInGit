@@ -5756,8 +5756,8 @@ var app = new Vue({
         data = dt;
         var symbol;
         data.forEach(function (dt) {
-          if (dt.symbol.match(/BUSD$/) && !dt.symbol.match(/UP/) && !dt.symbol.match(/DOWN/)) {
-            symbol = dt.symbol.replace("BUSD", "_USDT");
+          if (dt.symbol.match(/USDT$/) && !dt.symbol.match(/UP/) && !dt.symbol.match(/DOWN/)) {
+            symbol = dt.symbol.replace("USDT", "_USDT");
             _this5.dataSymn.push(symbol);
             _this5.binance[symbol] = parseFloat(dt.lastPrice);
           }
@@ -5799,8 +5799,8 @@ var app = new Vue({
         }
         data = JSON.parse(event.data).data;
         data.forEach(function (dt) {
-          if (dt.s.match(/BUSD$/) && !dt.s.match(/UP/) && !dt.s.match(/DOWN/)) {
-            symbol = dt.s.replace("BUSD", "_USDT");
+          if (dt.s.match(/USDT$/) && !dt.s.match(/UP/) && !dt.s.match(/DOWN/)) {
+            symbol = dt.s.replace("USDT", "_USDT");
             _this5.dataSymn.push(symbol);
             binance[symbol] = parseFloat(dt.c);
           }
@@ -5934,8 +5934,8 @@ var app = new Vue({
       // console.log(data);
       var symbol;
       data.forEach(function (dt) {
-        if (dt.symbol.match(/BUSD$/) && !dt.symbol.match(/UP/) && !dt.symbol.match(/DOWN/)) {
-          symbol = dt.symbol.replace("BUSD", "_USDT");
+        if (dt.symbol.match(/USDT$/) && !dt.symbol.match(/UP/) && !dt.symbol.match(/DOWN/)) {
+          symbol = dt.symbol.replace("USDT", "_USDT");
           _this8.dataSymn.push(symbol);
           _this8.binance[symbol] = parseFloat(dt.lastPrice);
         }
@@ -6316,7 +6316,7 @@ var app = new Vue({
     },
     urlx: function urlx(x, dt) {
       if (x == "/binance.png") {
-        return 'https://www.binance.com/en/trade/' + dt.replace('USDT', 'BUSD');
+        return 'https://www.binance.com/en/trade/' + dt;
       }
       if (x == "/kucoin.png") {
         return 'https://www.kucoin.com/trade/' + dt.replace('_', '-');
